@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
     int opt = TRUE;
     int master_socket, addrlen, new_socket, client_socket[30],
-        max_clients = 30, activity, i, valread, sd, sd_other;
+        max_clients = 30, activity, i,j, valread, sd, sd_other;
     int max_sd;
     struct sockaddr_in address;
 
