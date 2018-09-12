@@ -154,8 +154,7 @@ int main(int argc, char *argv[])
                 if ((valread = read(sd, buffer, 1024)) == 0)
                 {
                     //Somebody disconnected , get his details and print
-                    getpeername(sd, (struct sockaddr *)&address, \ 
-                        (socklen_t *)&addrlen);
+                    getpeername(sd, (struct sockaddr *)&address, (socklen_t *)&addrlen);
                     printf("Host disconnected , ip %s , port %d \n", inet_ntoa(address.sin_addr), ntohs(address.sin_port));
 
                     //Close the socket and mark as 0 in list for reuse
@@ -173,7 +172,7 @@ int main(int argc, char *argv[])
                     {
                         sd_other = client_socket[j];
 
-                        if (FD_ISSET(sd_other, &readfds)&&sd!=sd_other)
+                        if (FD_ISSET(sd_other, &readfds)0&&sd!=sd_other)
                         {
                             //Check if it was for closing , and also read the
                             //send message to other client
