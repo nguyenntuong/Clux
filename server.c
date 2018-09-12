@@ -17,12 +17,11 @@ int main(int argc, char *argv[])
 {
     int opt = TRUE;
     int master_socket, addrlen, new_socket, client_socket[30],
-        max_clients = 30, activity, i,j, valread, sd, sd_other;
+        max_clients = 30, activity, i, j, valread, sd, sd_other;
     int max_sd;
     struct sockaddr_in address;
 
     char buffer[1025]; //data buffer of 1K
-    
 
     //set of socket descriptors
     fd_set readfds;
@@ -167,18 +166,23 @@ int main(int argc, char *argv[])
                 {
                     //set the string terminating NULL byte on the end
                     //of the data read
-                    buffer[valread] = '\0';                    
+                    buffer[valread] = '\0';
+                    getpeername(sd, (struct sockaddr *)&address, (socklen_t *)&addrlen);
+                    printf("Receive from: , ip %s , port %d ,massage %s\n", inet_ntoa(address.sin_addr), ntohs(address.sin_port), buffer);
+
                     for (j = 0; j < max_clients; j++)
                     {
                         sd_other = client_socket[j];
 
-                        if (FD_ISSET(sd_other, &readfds)&&sd!=sd_other)
+                        if (FD_ISSET(sd_other, &readfds) && sd != sd_other)
                         {
                             //Check if it was for closing , and also read the
                             //send message to other client
-                                //set the string terminating NULL byte on the end
-                                //of the data read                                
-                                send(sd_other, buffer, strlen(buffer), 0);
+                            //set the string terminating NULL byte on the end
+                            //of the data read
+                            getpeername(sd_other, (struct sockaddr *)&address, (socklen_t *)&addrlen);
+                            printf("Sent to: , ip %s , port %d ,massage %s\n", inet_ntoa(address.sin_addr), ntohs(address.sin_port), buffer);
+                            send(sd_other, buffer, strlen(buffer), 0);
                         }
                     }
                 }
