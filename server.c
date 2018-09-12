@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in address;
 
     char buffer[1025]; //data buffer of 1K
+    
 
     //set of socket descriptors
     fd_set readfds;
@@ -168,15 +169,16 @@ int main(int argc, char *argv[])
                     //set the string terminating NULL byte on the end
                     //of the data read
                     buffer[valread] = '\0';                    
-                    for (i = 0; i < max_clients; i++)
+                    for (j = 0; j < max_clients; j++)
                     {
-                        sd_other = client_socket[i];
+                        sd_other = client_socket[j];
 
-                        if (FD_ISSET(sd_other, &readfds))
+                        if (FD_ISSET(sd_other, &readfds)&&sd!=sd_other)
                         {
                             //Check if it was for closing , and also read the
                             //send message to other client
-                            if (read(sd, null, 1024) != 0)
+                            char bf[1];
+                            if (read(sd_other, bf, 1024) != 0)
                             {
                                 //set the string terminating NULL byte on the end
                                 //of the data read                                
