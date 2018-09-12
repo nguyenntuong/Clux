@@ -174,10 +174,8 @@ int main(int argc, char *argv[])
                     {
                         sd_other = client_socket[j];
 
-                        if (FD_ISSET(sd_other, &readfds) && sd != sd_other)
+                        if (sd_other!=0 && sd_other!=sd)
                         {
-                            //Check if it was for closing , and also read the
-                            //send message to other client
                             //set the string terminating NULL byte on the end
                             //of the data read
                             getpeername(sd_other, (struct sockaddr *)&address, (socklen_t *)&addrlen);
