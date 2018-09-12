@@ -176,13 +176,9 @@ int main(int argc, char *argv[])
                         {
                             //Check if it was for closing , and also read the
                             //send message to other client
-                            char bf[1];
-                            if (read(sd_other, bf, 1024) != 0)
-                            {
                                 //set the string terminating NULL byte on the end
                                 //of the data read                                
                                 send(sd_other, buffer, strlen(buffer), 0);
-                            }
                         }
                     }
                 }
