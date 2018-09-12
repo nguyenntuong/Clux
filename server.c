@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
                     {
                         sd_other = client_socket[j];
 
-                        if (FD_ISSET(sd_other, &readfds)0&&sd!=sd_other)
+                        if (FD_ISSET(sd_other, &readfds)&&sd!=sd_other)
                         {
                             //Check if it was for closing , and also read the
                             //send message to other client
