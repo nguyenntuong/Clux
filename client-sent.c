@@ -49,7 +49,8 @@ int main(int argc, char *argv[])
         n = read(sockfd, buffer, 1024);
         if (n < 0)
             error("ERROR reading from socket");
-        printf("%s\n", buffer);
+        if(n>0)
+            printf("%s\n", buffer);
         printf("Please enter the message: ");
         bzero(buffer, 1024);
         fgets(buffer, 1024, stdin);
