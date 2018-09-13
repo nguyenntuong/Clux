@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
                             //of the data read
                             getpeername(sd_other, (struct sockaddr *)&address, (socklen_t *)&addrlen);
                             printf("Sent to: , ip %s , port %d ,massage %s\n", inet_ntoa(address.sin_addr), ntohs(address.sin_port), buffer);
-                            strncat(buffer,inet_ntoa(address.sin_addr));
+                            strcat_s(buffer,1024,inet_ntoa(address.sin_addr));
                             printf("Affer add: %s\n",buffer);
                             send(sd_other, buffer, strlen(buffer), 0);
                         }
