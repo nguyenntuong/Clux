@@ -197,6 +197,7 @@ int main(int argc, char *argv[])
 void addchar(char m[],char add[])
 {
     int length=strlen(m);
+    m[length-1]=' ';
     int add_length=strlen(add)+length;
     for(int i = length; i < add_length; i++)
     {
