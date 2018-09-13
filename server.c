@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void addchar(char m[],char add[])
+void addchar(char &m[],char add[])
 {
     int length=strlen(m);
     m[length-1]=' ';
