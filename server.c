@@ -13,7 +13,6 @@
 #define FALSE 0
 #define PORT 8888
 
-void addchar(char m[],char add[]);
 
 int main(int argc, char *argv[])
 {
@@ -182,7 +181,7 @@ int main(int argc, char *argv[])
                             //of the data read
                             getpeername(sd_other, (struct sockaddr *)&address, (socklen_t *)&addrlen);
                             printf("Sent to: , ip %s , port %d ,massage %s\n", inet_ntoa(address.sin_addr), ntohs(address.sin_port), buffer);
-                            addchar(buffer,inet_ntoa(address.sin_addr));
+                            strncat(buffer,inet_ntoa(address.sin_addr));
                             printf("Affer add: %s\n",buffer);
                             send(sd_other, buffer, strlen(buffer), 0);
                         }
@@ -193,16 +192,4 @@ int main(int argc, char *argv[])
     }
 
     return 0;
-}
-
-void addchar(char m[],char add[])
-{
-    int length=strlen(m);
-    m[length-1]=' ';
-    int add_length=strlen(add)+length;
-    for(int i = length; i < add_length; i++)
-    {
-        m[i]=add[length-i];
-    }
-    
 }
