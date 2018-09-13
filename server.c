@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void concat(char[] m,char[] add)
+void concat(char m[],char add[])
 {
     int length=strlen(m);
     int add_length=strlen(add)+length;
